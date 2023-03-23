@@ -1,10 +1,12 @@
 package com.egg.news.entidades;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import org.hibernate.annotations.GenericGenerator;
 
 
 
@@ -22,6 +24,8 @@ public class Noticia {
     
     // con este comando generamos automaticamente el id 
     @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     
     private String titulo;

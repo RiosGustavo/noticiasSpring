@@ -39,18 +39,17 @@ public class PeriodistaControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String id, @RequestParam String nombreUsuario, MultipartFile archivo, @RequestParam Integer SueldoMensual,
+    public String registro( @RequestParam String nombreUsuario, MultipartFile archivo, @RequestParam Integer SueldoMensual,
             @RequestParam String password, String password2, ModelMap modelo) {
 
         try {
-            periodistaServicio.registrar(archivo, id, nombreUsuario, SueldoMensual,
-                    password, password2);
+            periodistaServicio.registrar(archivo, nombreUsuario, SueldoMensual, password, password2);
 
             modelo.put("exito", "Periodista Registrado Exitosamente");
 
         } catch (MiExcepcion ex) {
             modelo.put("error", ex.getMessage());
-            modelo.put("id", id);
+            
             modelo.put("nombreUsuario", nombreUsuario);
 
             return "periodista_form.html";

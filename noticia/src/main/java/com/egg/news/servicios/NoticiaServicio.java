@@ -37,11 +37,11 @@ public class NoticiaServicio {
     
     
     @Transactional
-    public void crearNoticia(String id, String titulo, String cuerpo, String idPeriodista) throws MiExcepcion {
+    public void crearNoticia( String titulo, String cuerpo, String idPeriodista) throws MiExcepcion {
 
 /// ESTO ESTA EN EL VIDEO 8 DE EXCEPCIONES ERRORES
-        validar( id,  titulo, cuerpo, idPeriodista);
-        Optional<Noticia> respuesta = noticaRepositorio.findById(id);
+        validar(   titulo, cuerpo, idPeriodista);
+       
         Optional<Periodista> respuestaPeriodista = periodistaRepositorio.findById(idPeriodista);
         
         Periodista periodista = new Periodista();
@@ -55,7 +55,7 @@ public class NoticiaServicio {
         
         Noticia noti = new Noticia();
 
-        noti.setId(id);
+       
         noti.setTitulo(titulo);
         noti.setCuerpo(cuerpo);
         noti.setPeriodista(periodista);
@@ -84,9 +84,13 @@ public class NoticiaServicio {
 
     /// esto esta en el video 7
     @Transactional
-    public void modificarNotica(String id, String Titulo, String Cuerpo, String idPeriodista) throws MiExcepcion {
+    public void modificarNotica( String id, String Titulo, String Cuerpo, String idPeriodista) throws MiExcepcion {
         
-        validar( id,  Titulo, Cuerpo, idPeriodista);
+        if (id == null || id.isEmpty()) {
+            throw new MiExcepcion("Debe ingrear un id de la noticia");
+            
+        }
+        validar(   Titulo, Cuerpo, idPeriodista);
 
         /// con el comando optional prevenimos fallos en el id que no exista o no este relacionado a una noticia
         /// Optional es un objeto contenedor que puede cuyo valor no sea nulo
@@ -123,12 +127,9 @@ public class NoticiaServicio {
     }
     
     /// este metodo es private porque solo lo utilizan los metodos de esta clase 
-    private void validar(String id, String titulo, String cuerpo, String idPeriodista) throws MiExcepcion{
+    private void validar( String titulo, String cuerpo, String idPeriodista) throws MiExcepcion{
         
-        if (id == null) {
-            throw new MiExcepcion("Debe ingrear un IDde la noticia ");
-
-        }
+       
         if (titulo.isEmpty() || titulo == null) {
             throw new MiExcepcion("Debe ingrear un Titulo de la noticia");
         }

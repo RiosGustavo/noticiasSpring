@@ -49,19 +49,19 @@ public class PeriodistaServicio implements UserDetailsService {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrar(MultipartFile archivo, String id, String nombreUsuario, Integer SueldoMensual,
+    public void registrar(MultipartFile archivo,  String nombreUsuario, Integer SueldoMensual,
             String password, String password2) throws MiExcepcion {
         
-        validar( id, nombreUsuario, SueldoMensual, password, password2);
+        validar( nombreUsuario, SueldoMensual, password, password2);
 
         Periodista periodista = new Periodista();
 
-        periodista.setId(id);
+       
         periodista.setNombreUsuario(nombreUsuario);
         periodista.setFecha_alta(new Date());
         periodista.setSueldoMensual(SueldoMensual);
         periodista.setPassword(new BCryptPasswordEncoder().encode(password));
-        periodista.setRol(Rol.USER);
+        periodista.setRol(Rol.PERIODISTA);
 
         Imagen imagen = imagenServicio.guardar(archivo);
 
@@ -75,7 +75,7 @@ public class PeriodistaServicio implements UserDetailsService {
     public void actualizar(MultipartFile archivo, String id, String nombreUsuario, Integer SueldoMensual,
             String password, String password2) throws MiExcepcion {
         
-        validar( id, nombreUsuario, SueldoMensual, password, password2);
+        validar( nombreUsuario, SueldoMensual, password, password2);
 
         Optional<Periodista> respuesta = periodistaRepositorio.findById(id);
 
@@ -122,12 +122,9 @@ public class PeriodistaServicio implements UserDetailsService {
     }
     
     
-    private void validar(String id, String nombreUsuario, Integer SueldoMensual, String password, String password2) throws MiExcepcion {
+    private void validar(String nombreUsuario, Integer SueldoMensual, String password, String password2) throws MiExcepcion {
 
-        if (id == null) {
-            throw new MiExcepcion("Debe ingrear un ID de usuario ");
-
-        }
+      
         if (nombreUsuario.isEmpty() || nombreUsuario == null) {
             throw new MiExcepcion("Debe ingrear nombre Usuario");
         }

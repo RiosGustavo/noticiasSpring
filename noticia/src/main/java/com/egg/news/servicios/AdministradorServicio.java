@@ -47,13 +47,13 @@ public class AdministradorServicio implements UserDetailsService {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void Registrar(MultipartFile archivo, String id, String nombreUsuario,String password, String password2) throws MiExcepcion {
+    public void Registrar(MultipartFile archivo,  String nombreUsuario,String password, String password2) throws MiExcepcion {
 
-        validar(id, nombreUsuario, password, password2);
+        validar( nombreUsuario, password, password2);
 
         Administrador administrador = new Administrador();
 
-        administrador.setId(id);
+        
         administrador.setNombreUsuario(nombreUsuario);
         administrador.setFecha_alta(new Date());
 
@@ -72,7 +72,12 @@ public class AdministradorServicio implements UserDetailsService {
     public void actualizar(MultipartFile archivo, String id, String nombreUsuario,
             String password, String password2) throws MiExcepcion {
 
-        validar(id, nombreUsuario, password, password2);
+         if (id == null || id.isEmpty()) {
+            throw new MiExcepcion("Debe ingrear un id de la noticia");
+            
+        }
+        
+        validar( nombreUsuario, password, password2);
 
         Optional<Administrador> respuesta = administradorRepositorio.findById(id);
 
@@ -139,12 +144,9 @@ public class AdministradorServicio implements UserDetailsService {
         }
     }
 
-     private void validar(String id, String nombreUsuario, String password, String password2) throws MiExcepcion {
+     private void validar( String nombreUsuario, String password, String password2) throws MiExcepcion {
 
-        if (id == null) {
-            throw new MiExcepcion("Debe ingrear un ID de usuario ");
-
-        }
+        
         if (nombreUsuario.isEmpty() || nombreUsuario == null) {
             throw new MiExcepcion("Debe ingrear nombre Usuario");
         }

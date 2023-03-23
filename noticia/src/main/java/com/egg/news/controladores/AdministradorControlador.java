@@ -35,18 +35,18 @@ public class AdministradorControlador {
     }
     
     @PostMapping("/registro")
-    public String registro(@RequestParam String id, @RequestParam String nombreUsuario, MultipartFile archivo,
+    public String registro( @RequestParam String nombreUsuario, MultipartFile archivo,
             @RequestParam String password, String password2, ModelMap modelo) {
 
         try {
-            administradorServicio.Registrar(archivo, id, nombreUsuario, password, password2);
+            administradorServicio.Registrar(archivo,  nombreUsuario, password, password2);
                     
 
             modelo.put("exito", "Administrador Registrado Exitosamente");
 
         } catch (MiExcepcion ex) {
             modelo.put("error", ex.getMessage());
-            modelo.put("id", id);
+            
             modelo.put("nombreUsuario", nombreUsuario);
 
             return "administrador_form.html";

@@ -48,13 +48,13 @@ public class NoticiaControlador {
     
     
     @PostMapping("/registro")
-    public String registro(@RequestParam(required = false) String id, @RequestParam String titulo,
+    public String registro( @RequestParam(required = false) String titulo,
             @RequestParam String cuerpo,  @RequestParam String idPeriodista,   ModelMap modelo) throws MiExcepcion {
         /// modelo sirve para mostrar la informacion por pantalla
 
         try {
 
-            notiServicio.crearNoticia(id, titulo, cuerpo, idPeriodista);
+            notiServicio.crearNoticia( titulo, cuerpo, idPeriodista);
 
             modelo.put("exito", "La noticia fue cargada Exitosamente "); // si todo va bien retornamos al index
 
