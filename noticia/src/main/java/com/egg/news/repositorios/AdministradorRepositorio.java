@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AdministradorRepositorio extends JpaRepository<Administrador, String>{
     
-    @Query("SELECT a FROM Administrador a WHERE a.id = :id")
-    public Administrador buscarPornombreAdministrador(@Param("id") String id);
+    @Query("SELECT a FROM Administrador a WHERE a.nombreUsuario = :nombreUsuario")
+    public Administrador buscarPornombreAdministrador(@Param("nombreUsuario") String nombreUsuario);
     
 }

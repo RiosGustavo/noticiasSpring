@@ -82,12 +82,12 @@ public class PeriodistaServicio implements UserDetailsService {
         if (respuesta.isPresent()) {
 
             Periodista periodista = (Periodista) respuesta.get();
-            periodista.setId(id);
+           periodista.setId(id);
             periodista.setNombreUsuario(nombreUsuario);
-            periodista.setFecha_alta(new Date());
+          periodista.setFecha_alta(new Date());
             periodista.setSueldoMensual(SueldoMensual);
-            periodista.setPassword(new BCryptPasswordEncoder().encode(password));
-            periodista.setRol(Rol.USER);
+           periodista.setPassword(new BCryptPasswordEncoder().encode(password));
+          periodista.setRol(Rol.USER);
 
             String idImagen = null;
 

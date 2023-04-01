@@ -58,7 +58,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <li><a class="dropdown-item" th:href="@{/periodista/lista}">Listar Periodista</a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Administradores
@@ -71,7 +71,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             <li><a class="dropdown-item" th:href="@{/administrador/lista}">Listar Administradores</a></li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Perfil
@@ -105,11 +105,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <th scope="col">Id del Adminstrador</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Foto de Perfil</th>
-                        
-
+                        <th scope="col" sec:authorize="hasRole('ADMIN')" >Acciones</th>
                         <!--CON ESTE COMANDO DE SE: AUTHORIZE SE LIMITA QUE SOLO EL USURAIO CON ROL DE 
                         ADMINISTRADOR PUEDA MODIFICAR LAS NOTICIAS -->
-                        <th scope="col" sec:authorize="hasRole('ADMIN')" >Acciones</th>
 
                     </tr>
                 </thead>
@@ -120,7 +118,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <td>
                             <a><img th:if="${administrador.imagen != null}" class="logo" th:src="@{/imagen/perfil/__${administrador.id}__}" ></a>
                         </td>
-                        
+                        <td>
                             <a sec:authorize="hasRole('ADMIN')" th:href= "@{/administrador/modificar/__${administrador.id}__}"><i class="fas fa-feather-alt"></i> Modificar </a>
                         </td>
 

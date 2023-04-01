@@ -64,7 +64,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <div class="container-fluid m-5 contenedor">
 
             <!-- variable de preprocesamiento-->
-            <form class="formulario" th:action="@{/perfil/__${periodista.id}__}" method="POST" enctype="multipart/form-data">
+            <form class="formulario" th:action="@{/periodista/modificar/__${periodista.id}__}" method="POST" enctype="multipart/form-data">
 
                 <input hidden th:value="${id}" name="id">
 

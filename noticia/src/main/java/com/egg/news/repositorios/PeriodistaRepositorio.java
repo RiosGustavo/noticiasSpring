@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PeriodistaRepositorio extends JpaRepository<Periodista, String> {
     
-     @Query("SELECT p FROM Periodista p WHERE p.id = :id")
-    public Periodista buscarPornombrePeriodista(@Param("id") String id);
+     @Query("SELECT p FROM Periodista p WHERE p.nombreUsuario = :nombreUsuario")
+    public Periodista buscarPornombrePeriodista(@Param("nombreUsuario") String nombreUsuario);
    
 }

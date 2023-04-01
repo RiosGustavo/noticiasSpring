@@ -77,10 +77,10 @@ public class PeriodistaControlador {
 
     @PostMapping("/modificar/{id}")
     public String modificar(MultipartFile archivo, @PathVariable String id, String nombreUsuario,
-            Integer SueldoMensual, ModelMap modelo) {
+           String password, String password2,Integer SueldoMensual, ModelMap modelo) {
         try {
              //// ACA TENGO UNA DUDA EN EL CONSTRUCTOR DE ACTUALIZAR 
-            periodistaServicio.actualizar(archivo, id, nombreUsuario, SueldoMensual, id, id);
+            periodistaServicio.actualizar(archivo, id, nombreUsuario, SueldoMensual, password, password2);
 
             return "redirect:../lista";
         } catch (MiExcepcion ex) {

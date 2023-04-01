@@ -65,6 +65,17 @@
                             <li><a class="dropdown-item" th:href="@{/periodista/lista}">Listar periodistas</a></li>
                         </ul>
                     </li>
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" th:if="${session.usuariosession != null}" href="#"
+                           id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            USUARIOS
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" th:href="@{/admin/usuarios}">Listar Usuarios</a></li>
+                    
+                    
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

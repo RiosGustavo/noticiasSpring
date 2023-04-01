@@ -26,11 +26,16 @@ public class PortalControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
+    
+    @Autowired
+    private AppController  appController;
 
     /// con est metodo le decimos que cuando ejecutemos la / en el marcador de las direcciones 
     // ejecuta todo el cuerpo de este metodo Html
     @GetMapping("/")
     public String index() {
+        
+       appController.sendEmail("gustavosuperlangorios@outlook.com", "gustavosuperlango@gmail.com");
 
         /// con este metodo devolvemos la vista de la pagina web que se hara en html
         return "index.html";

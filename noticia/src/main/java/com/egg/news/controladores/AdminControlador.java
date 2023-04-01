@@ -11,6 +11,7 @@ import com.egg.news.servicios.UsuarioServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,14 +42,14 @@ public class AdminControlador {
         return "panel.html";
         
     }
-    
+     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @GetMapping("/usuarios")
     public String listar(ModelMap modelo){
         List<Usuario> usuarios =  userServ.listarUsuarios();
-       // List<Periodista> periodistas = periodistaServicio.listarPeriodistas();
+       
         
         modelo.addAttribute("usuarios", usuarios);
-    //    modelo.addAttribute("usuarios", periodistas);
+    
         
         return "usuario_list.html";
         
